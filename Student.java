@@ -41,7 +41,7 @@ public class Student
 
     // === OTHER METHODS ====================================================
     // I like to list these in alphabetical order to make them easy to find.
-    
+
     public double getGPA()
     {
         return gpa;
@@ -49,7 +49,49 @@ public class Student
 
     public void setGPA(double gpa) 
     {
-        this.gpa = gpa;
+        if (gpa >= 0.0)
+        {
+            if (gpa <= 4.0)
+            {
+                this.gpa = gpa;
+            }
+        }
+    }
+
+    // === TESTS ==============================================================
+    // Code that tests the methods above.
+    
+    private void testGPA()
+    {
+        // Build a brand new student to test on.
+        Student s = new Student();
+
+        // Make sure the default gpa is 0.
+        if (s.getGPA() != 0.0)
+        {
+            System.out.println("Initial GPA is not 0!");
+        }
+
+        // Make sure getter and setter are working.
+        s.setGPA(3.0);
+        if (s.getGPA() != 3.0)
+        {
+            System.out.println("Initial GPA is not 3!");
+        }
+
+        // Try to set a negative GPA. Should remain unchanged.
+        s.setGPA(-1);
+        if (s.getGPA() != 3.0)
+        {
+            System.out.println("Initial GPA should remain 3.0 (-1)!");
+        }
+
+        // Try to set a GPA > 4. Should remain unchanged.
+        s.setGPA(10.0);
+        if (s.getGPA() != 3.0)
+        {
+            System.out.println("Initial GPA should remain 3.0 (10)!");
+        }
     }
 
     // === MAIN ===============================================================
@@ -57,9 +99,12 @@ public class Student
     // main is not a method of Student!
     public static void main(String[] a) 
     {
-        
         Student s = new Student();  // need to build a Student
         s.setGPA(3.2);              // before calling methods on it
+
+        // Let's test some stuff. No news is good news. If our program doesn't
+        // print anything, then everything worked.
+        s.testGPA();
     }
 
 }
