@@ -49,18 +49,15 @@ public class Student
 
     public void setGPA(double gpa) 
     {
-        if (gpa >= 0.0)
+        if (gpa >= 0.0 && gpa <= 4.0)
         {
-            if (gpa <= 4.0)
-            {
-                this.gpa = gpa;
-            }
+            this.gpa = gpa;
         }
     }
 
     // === TESTS ==============================================================
     // Code that tests the methods above.
-    
+
     private void testGPA()
     {
         // Build a brand new student to test on.
