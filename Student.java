@@ -64,31 +64,19 @@ public class Student
         Student s = new Student();
 
         // Make sure the default gpa is 0.
-        if (s.getGPA() != 0.0)
-        {
-            System.out.println("Initial GPA is not 0!");
-        }
+        assert (s.getGPA() == 0.0) : "Initial GPA is not 0!";
 
         // Make sure getter and setter are working.
         s.setGPA(3.0);
-        if (s.getGPA() != 3.0)
-        {
-            System.out.println("Initial GPA is not 3!");
-        }
+        assert (s.getGPA() == 3.0) : "Initial GPA is not 3!";
 
         // Try to set a negative GPA. Should remain unchanged.
         s.setGPA(-1);
-        if (s.getGPA() != 3.0)
-        {
-            System.out.println("Initial GPA should remain 3.0 (-1)!");
-        }
-
+        assert (s.getGPA() == 3.0) : "Initial GPA should remain 3.0 (-1)!";
+        
         // Try to set a GPA > 4. Should remain unchanged.
         s.setGPA(10.0);
-        if (s.getGPA() != 3.0)
-        {
-            System.out.println("Initial GPA should remain 3.0 (10)!");
-        }
+        assert (s.getGPA() == 3.0) : "Initial GPA should remain 3.0 (10)!";
     }
 
     // === MAIN ===============================================================
