@@ -69,7 +69,7 @@ public class Student
     private void testGPA()
     {
         // Build a brand new student to test on.
-        Student s = new Student();
+        Student s = new Student("LAST", "FIRST");
 
         // Make sure the default gpa is 0.
         assert (s.getGPA() == 0.0) : "Initial GPA is not 0!";
@@ -85,6 +85,16 @@ public class Student
         // Try to set a GPA > 4. Should remain unchanged.
         s.setGPA(10.0);
         assert (s.getGPA() == 3.0) : "Initial GPA should remain 3.0 (10)!";
+        
+        // Make sure equals works.
+        Student t1 = new Student("LAST", "first");
+        assert ( s.equals(t1) == false ) : "equals() should return false";
+        
+        Student t2 = new Student("LAST", "FIRST");
+        assert ( s.equals(t2) == true ) : "equals() should return true";
+        
+        System.out.println("END OF TESTS");
+        
     }
 
     // === MAIN ===============================================================
