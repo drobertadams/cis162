@@ -45,15 +45,9 @@ public class Student
     // Return true of other and this are the same student (same lastname and firstname).
     public boolean equals(Student other) 
     {
-        if (this.lastName.equals(other.lastName) && 
-            this.firstName.equals(other.firstName))
-        {
-            return true;
-        }
-        else 
-        {
-            return false;
-        }
+        return 
+            this.lastName.equals(other.lastName) && 
+            this.firstName.equals(other.firstName);
     }
 
     public double getGPA()
