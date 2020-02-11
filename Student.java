@@ -42,6 +42,26 @@ public class Student
     // === OTHER METHODS ====================================================
     // I like to list these in alphabetical order to make them easy to find.
 
+    // Return true of other and this are the same student (same lastname and firstname).
+    public boolean equals(Student other) 
+    {
+        if (this.lastName.equals(other.lastName)) 
+        {
+            if (this.firstName.equals(other.firstName)) 
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
+        }
+        else 
+        {
+            return false;
+        }
+    }
+
     public double getGPA()
     {
         return gpa;
@@ -73,7 +93,7 @@ public class Student
         // Try to set a negative GPA. Should remain unchanged.
         s.setGPA(-1);
         assert (s.getGPA() == 3.0) : "Initial GPA should remain 3.0 (-1)!";
-        
+
         // Try to set a GPA > 4. Should remain unchanged.
         s.setGPA(10.0);
         assert (s.getGPA() == 3.0) : "Initial GPA should remain 3.0 (10)!";
