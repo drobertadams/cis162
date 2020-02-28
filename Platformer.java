@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Platformer
 {
     public static void main(String[] a)
@@ -8,6 +10,7 @@ public class Platformer
     }
 
     private final int LEVEL_LENGTH = 20;
+    private final int NUM_HEIGHTS = 10;
 
     private int level[];
 
@@ -18,9 +21,10 @@ public class Platformer
 
     public void createLevel()
     {
+        Random gen = new Random();
         for (int i = 0; i < LEVEL_LENGTH; i++)
         {
-            level[i] = 5;
+            level[i] = gen.nextInt(NUM_HEIGHTS);
         }
     }
 
