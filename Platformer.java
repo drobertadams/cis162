@@ -30,26 +30,17 @@ public class Platformer
         Random gen = new Random();
         for (int i = 1; i < LEVEL_LENGTH; i++)
         {
-            level[i] = gen.nextInt(NUM_HEIGHTS);
+            // Keep generating heights until one is acceptable.
+            boolean isAcceptable = false;
+            int height = 0;
+            while ( ! isAcceptable ) {
+                height = gen.nextInt(NUM_HEIGHTS);
+                isAcceptable = true;
+            }
+            level[i] = height;
         }
 
-        // "Smooth" out the level to make it survivable.
-        for (int i = 1; i < LEVEL_LENGTH; i++)
-        {
-            // If the previous height is too tall (we would die if we fell off), 
-            // increase the current height so it isn't deadly.
-            if ( level[i-1] - level[i] > MAX_SURVIVABLE_HEIGHT )
-            {
-                level[i] = level[i-1] - MAX_SURVIVABLE_HEIGHT;
-            }
-
-            // If the previous is too low (cannot be jumped), decrease the current
-            // height so we can make the jump.
-            if ( level[i-1] - level[i] > -MAX_JUMP_HEIGHT ) {
-                level[i] = level[i-1] - MAX_JUMP_HEIGHT;
-            }
-        }        
-    }
+      }
 
     public void printLevel()
     {
