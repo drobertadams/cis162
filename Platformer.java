@@ -37,7 +37,17 @@ public class Platformer
                 height = gen.nextInt(NUM_HEIGHTS);
 
                 // If the candidate height isn't too low, then it's acceptable.
-                if ( level[i-1] - height <= MAX_SURVIVABLE_HEIGHT ) {
+                if (level[i-1] > height) {
+                    if (level[i-1] - height <= MAX_SURVIVABLE_HEIGHT) {
+                        isAcceptable = true;
+                    }
+                }
+                else if (level[i-1] < height) {
+                    if (height - level[i-1] <= MAX_JUMP_HEIGHT) {
+                        isAcceptable = true;
+                    }
+                }
+                else {
                     isAcceptable = true;
                 }
             }
