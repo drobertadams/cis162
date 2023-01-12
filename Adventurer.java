@@ -1,5 +1,6 @@
 
 import java.util.Random;
+import java.util.ArrayList;
 
 /**
  * Adventurer Lab Exam
@@ -9,18 +10,20 @@ public class Adventurer
     private String name;
     private int hp, xp, level;
     private Random rng;
-    private String[] inventory;
-    private static final int MAX_HP = 100;
-    private static final int XP_FOR_NEXT_LEVEL = 500;
+    private ArrayList<Item> inventory;
+    
+    private static final int MAX_HP = 500;
+    private static final int XP_FOR_NEXT_LEVEL = 200;
 
-    private static final int UNARMED_DMG_RANGE = 11;
+    // 21 not 20 because Random.nextInt(x) is exclusive of the high end
+    private static final int UNARMED_DMG_RANGE = 21; 
     private static final int MIN_UNARMED_DMG = 0;
 
     private static final int DAGGER_DMG_RANGE = 11;
-    private static final int MIN_DAGGER_DMG = 10;
+    private static final int MIN_DAGGER_DMG = 20;
 
     private static final int SWORD_DMG_RANGE = 11;
-    private static final int MIN_SWORD_DMG = 20;
+    private static final int MIN_SWORD_DMG = 30;
 
     private static final int MAX_INVENTORY = 10;
     public Adventurer (String name)
@@ -30,7 +33,7 @@ public class Adventurer
         level = 1;
         xp = 0;
         rng = new Random();
-        inventory = new String[MAX_INVENTORY];
+        inventory = new ArrayList<Item>();
     }
 
     public String getName() { return name; }
@@ -103,23 +106,19 @@ public class Adventurer
 
     public int hasItem(String item)
     {
-        for (int i=0; i<inventory.length;i++) {
-            if (inventory[i] != null && inventory[i].equals(item)) {
+        for (int i=0; i<inventory.size();i++) {
+            if (inventory.get(i).description.equals(item)) {
                 return i;
             }
         }
         return -1;
     }
 
-    public boolean pickup(String item)
+    public boolean pickup(String item, int weight)
     {
-        for (int i=0; i<inventory.length;i++) {
-            if (inventory[i] == null) {
-                inventory[i] = item;
-                return true;
-            }
-        }
-        return false;
+        Item i = new Item(item, weight);
+        inventory.add(i);
+        return true;
     }
 
     public boolean drop(String item)
@@ -128,7 +127,7 @@ public class Adventurer
         if (slot == -1)
             return false;
         else {
-            inventory[slot] = null;
+            inventory.remove(slot);
             return true;
         }
     }
